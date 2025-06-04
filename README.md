@@ -1,12 +1,30 @@
-# React + Vite
+# Workout Tracker Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern workout tracking web application with analytics visualization, built with React.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Workout Management**:
+  - Create, view, edit, and delete workouts
+  - Track exercises and sets for each workout
+  - Add ratings and comments to workouts
 
-## Expanding the ESLint configuration
+- **Exercise Analytics**:
+  - Visualize progress with interactive charts
+  - Filter by exercise, weight, reps, and date ranges
+  - Track progression over time
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **User Experience**:
+  - Dark/light theme toggle
+  - Responsive design for all devices
+  - Data persistence using browser storage
+
+- **Technical Features**:
+  - React functional components with hooks
+  - React Router for navigation
+  - Recharts for data visualization
+  - GitHub Pages deployment
+
+## Live Demo
+
+Try the application live: [https://renat03.github.io/PW-Lab-6/](https://renat03.github.io/PW-Lab-6/)
