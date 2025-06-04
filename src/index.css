@@ -1,39 +1,104 @@
+/* index.css */
+
+/* Define CSS variables for light theme (default) */
+:root {
+  --primary: #6ee7b7; /* A nice minty green */
+  --primary-dark: #10b981;
+  --text: #1f2937; /* Dark gray text */
+  --text-light: #6b7280; /* Lighter gray text */
+  --bg: #f9fafb; /* Very light gray background for general use */
+  --card-bg: #ffffff; /* White background for cards/containers */
+  --border: #e5e7eb; /* Light gray border */
+  
+  /* Navbar specific variables (adjusted for glassmorphism) */
+  --nav-bg: rgba(255, 255, 255, 0.7); /* Light glassmorphism background */
+  --nav-text: var(--text);
+  --nav-link-text: var(--text-light);
+
+  /* Theme toggle specific variables */
+  --icon-color-sun: #facc15; /* Yellow for sun */
+  --icon-color-moon: #93c5fd; /* Light blue for moon */
+  --toggle-bg: #e5e7eb;
+  --toggle-hover-bg: #d1d5db;
+  
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  
+  /* Body background for light theme */
+  --body-bg-image: url('https://www.transparenttextures.com/patterns/geometric-pattern.png'); 
+  --body-bg-color: #f5f7fa; /* A slightly darker light gray for the base */
+}
+
+/* Define CSS variables for dark theme, overriding light theme defaults */
+[data-theme="dark"] {
+  --primary: #6ee7b7;
+  --primary-dark: #10b981;
+  --text: #f3f4f6; /* Light gray text */
+  --text-light: #9ca3af; /* Lighter gray text */
+  --bg: #111827; /* Dark blue/gray for general use */
+  --card-bg: #1f2937; /* Darker card background */
+  --border: #374151; /* Darker border */
+  
+  /* Navbar specific variables (adjusted for glassmorphism) */
+  --nav-bg: rgba(31, 41, 55, 0.6); /* Dark glassmorphism background */
+  --nav-text: var(--text);
+  --nav-link-text: #9ca3af; /* Lighter gray for inactive links */
+  
+  /* Theme toggle specific variables */
+  --toggle-bg: #374151;
+  --toggle-hover-bg: #4b5563;
+  
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+
+  /* Body background for dark theme */
+  --body-bg-image: url('https://www.transparenttextures.com/patterns/black-linen-2.png'); 
+  --body-bg-color: #0c121d; /* Very dark blue for the base */
+}
+
+/* Global transitions and box-sizing */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #222;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Apply the theme-specific background color and image */
+  background-color: var(--body-bg-color); 
+  background-image: var(--body-bg-image); 
+  background-repeat: repeat; /* Ensure the pattern tiles */
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-nav {
-  background: #007acc;
-  padding: 1rem;
-  color: white;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure root takes full width */
 }
 
-nav a {
-  color: white;
-  margin-right: 1rem;
-  text-decoration: none;
+/* Ensure the main content section grows to fill available space */
+main.app-container {
+  flex-grow: 1;
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* General Card Styling (can be used by other components if they use .glass-card) */
+.glass-card {
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  background: var(--nav-bg); /* Uses the general glassmorphism background */
 }
 
-.container {
-  padding: 1rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-button {
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-}
-
-input, select {
-  padding: 0.3rem;
-  margin: 0.3rem 0;
+/* If ExerciseAnalytics has specific styling that needs to pick up theme vars,
+   ensure it uses them. The current structure should already allow this
+   if it relies on global variables. */
+.exercise-analytics {
+  /* No specific background-color needed here if it's placed inside app-container or glass-card */
 }

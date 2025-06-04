@@ -1,42 +1,180 @@
-#root {
-  max-width: 1280px;
+/* App.css */
+
+/* --- Navbar Styling --- */
+.app-nav {
+  padding: 1.2rem 2.5rem; /* More generous padding */
+  box-shadow: var(--shadow); /* Use shadow variable */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border); /* Subtle bottom border */
+  /* Glassmorphism for nav - background-color will be set by JS/data-theme */
+  backdrop-filter: blur(10px);
+}
+
+.nav-content {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0; /* Reset padding here as it's on .app-nav */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-links {
+  display: flex;
+  gap: 2.5rem; /* Increased gap for a more open feel */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-link {
+  color: var(--nav-link-text); /* Use nav link text variable */
+  text-decoration: none;
+  font-weight: 600; /* Bolder text for links */
+  font-size: 1.1rem; /* Slightly larger font size */
+  padding: 0.7rem 0; /* More vertical padding */
+  position: relative;
+  transition: color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px; /* Add slight letter spacing */
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  transform: translateY(-3px); /* More pronounced lift on hover */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; /* Position underline further down */
+  left: 50%; /* Center the underline */
+  transform: translateX(-50%); /* Adjust for centering */
+  width: 0;
+  height: 4px; /* Even thicker underline */
+  background: var(--primary);
+  border-radius: 3px; /* More rounded corners for the underline */
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%; /* Expand the underline on hover */
+}
+
+/* --- Theme Toggle Button Styles --- */
+.theme-toggle {
+  background-color: var(--toggle-bg);
+  border: none;
+  border-radius: 20px; /* Pill shape */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* For icon positioning */
+  width: 50px; /* Fixed width for the pill */
+  height: 26px; /* Fixed height for the pill */
+  padding: 3px;
+  position: relative;
+  outline: none;
+  transition: background-color 0.3s ease;
+  box-shadow: var(--shadow); /* Apply theme shadow */
+}
+
+.theme-toggle:hover {
+  background-color: var(--toggle-hover-bg);
+}
+
+.toggle-icon-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.theme-toggle .icon {
+  font-size: 0.9rem; /* Slightly smaller icons */
+  line-height: 1;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle .sun-icon {
+  color: var(--icon-color-sun);
+  left: 4px; /* Position sun icon to the left */
+  transform: translateX(0%) scale(1);
+  opacity: 1;
+}
+
+.theme-toggle .moon-icon {
+  color: var(--icon-color-moon);
+  right: 4px; /* Position moon icon to the right */
+  transform: translateX(100%) scale(0); /* Start hidden to the right, scaled down */
+  opacity: 0;
+}
+
+/* Dark mode active: sun moves out (left), moon moves in (from right) */
+.theme-toggle.dark-mode .sun-icon {
+  transform: translateX(-100%) scale(0);
+  opacity: 0;
+}
+
+.theme-toggle.dark-mode .moon-icon {
+  transform: translateX(0%) scale(1);
+  opacity: 1;
+}
+
+/* --- Main Content Container --- */
+.app-container {
+  flex: 1;
+  padding: 3rem; /* More padding for content area */
+  max-width: 1200px;
+  margin: 2rem auto; /* More margin top/bottom for clear separation */
+  width: 100%;
+  background-color: var(--card-bg); /* Use card-bg for the content area */
+  min-height: calc(100vh - 150px); /* Adjust based on new navbar height and margins */
+  box-shadow: var(--shadow); /* Prominent shadow for the content card */
+  border-radius: 12px; /* More rounded corners */
+  border: 1px solid var(--border); /* Subtle border for definition */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .app-nav {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav-content {
+    flex-direction: column;
+    gap: 1.5rem; /* More space between stacked elements */
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .nav-links {
+    width: 100%;
+    justify-content: space-around;
+    gap: 1rem; /* Adjust gap for smaller screens */
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .nav-link {
+    font-size: 1rem; /* Smaller font for mobile */
+    padding: 0.4rem 0;
+  }
 
-.read-the-docs {
-  color: #888;
+  .nav-link::after {
+    bottom: -4px;
+    height: 2px;
+  }
+  
+  .theme-toggle {
+    width: 80px; /* Adjusted fixed width for better mobile tap target */
+    height: 30px;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+
+  .app-container {
+    padding: 1.5rem;
+    margin: 1rem auto;
+    min-height: calc(100vh - 120px);
+  }
 }
